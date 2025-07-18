@@ -38,17 +38,17 @@ if ($mform->is_cancelled()) {
     redirect(new moodle_url('/admin/index.php'));
 } else if ($data = $mform->get_data()) {
     // Convert comma-separated string to array, trim whitespace
-    $courseidArray = array_map('trim', explode(',', $data->courseid));
+    $courseid_array = array_map('trim', explode(',', $data->courseid));
 
     // Merge arrays and remove duplicates
-    $mergedCourseIds = array_unique(array_merge($data->courseids, $courseidArray));
+    $merged_courseids = array_unique(array_merge($data->courseids, $courseid_array));
 
     // Optionally re-index the array
-    $mergedCourseIds = array_values($mergedCourseIds);
+    $merged_courseids = array_values($merged_courseids);
     if (empty($data->courseid)) {
-        $mergedCourseIds = $data->courseids;
+        $merged_courseids = $data->courseids;
     }
-    \local_deletecourse\manager::delete_selected_courses($mergedCourseIds);
+    \local_deletecourse\manager::delete_selected_courses($merged_courseids);
     echo $OUTPUT->notification(get_string('successdelete', 'local_deletecourse'), 'notifysuccess');
 }
 
