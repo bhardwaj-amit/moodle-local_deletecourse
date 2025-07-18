@@ -48,7 +48,7 @@ class delete_old_courses_task extends \core\task\scheduled_task {
     
         $sql = "SELECT id, fullname FROM {course}
                 WHERE id != :siteid AND
-                      (lastaccess = 0 OR lastaccess < :threshold)";
+                      (timemodified = 0 OR timemodified < :threshold)";
         $params = ['siteid' => SITEID, 'threshold' => $threshold];
         $courses = $DB->get_records_sql($sql, $params);
     
@@ -69,12 +69,12 @@ class delete_old_courses_task extends \core\task\scheduled_task {
                 mtrace("Deleting course ID {$course->id}");
                 delete_course($DB->get_record('course', ['id' => $course->id]));
             }
-            $report = "The following courses were deleted:\n\n" . $report;
+            $report = get_string('deletedcoursesheader', 'local_yourplugin') . "\n\n" . $report;
         }
     
         // Email report
         if (!empty($email)) {
-            $subject = get_string('pluginname', 'local_deletecourse') . ': ' . ($dryrun ? 'Dry Run Report' : 'Deletion Report');
+            $subject = get_string('pluginname', 'local_deletecourse') . ': ' . ($dryrun ? get_string('dryrunreport', 'local_yourplugin') : get_string('deletionreport', 'local_yourplugin'));
             email_to_user(\core_user::get_support_user(), \core_user::get_support_user(), $subject, $report);
             mtrace("Notification sent to $email");
         }

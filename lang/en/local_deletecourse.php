@@ -39,3 +39,9 @@ $string['dryrunmode_desc'] = 'When enabled, no courses are deleted. A preview li
 $string['notificationemail'] = 'Notification email address';
 $string['notificationemail_desc'] = 'Email address to send the dry-run or deletion reports.';
 $string['settings'] = 'Delete course settings';
+$string['deletedcoursesheader'] = 'The following courses were deleted:';
+$string['dryrunreport'] = 'Dry Run Report';
+$string['deletionreport'] = 'Deletion Report';
+$string['deletecourse:delete'] = 'Delete courses';
+//Privacy Api 
+$string['privacy:metadata'] = 'The Delete Course plugin does not store any personal data.';
