@@ -69,7 +69,7 @@ class delete_old_courses_task extends \core\task\scheduled_task {
                 mtrace("Deleting course ID {$course->id}");
                 delete_course($DB->get_record('course', ['id' => $course->id]));
             }
-            $report = get_string('deletedcoursesheader', 'local_yourplugin') . "\n\n" . $report;
+            $report = get_string('deletedcoursesheader', 'local_deletecourse') . "\n\n" . $report;
         }
     
         // Email report

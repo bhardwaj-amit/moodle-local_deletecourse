@@ -66,7 +66,7 @@
      // 4. Add an external page under the same custom subcategory.
      $ADMIN->add('local_deletecourse_category', new admin_externalpage(
          'local_deletecourse',
-         get_string('deletecourses'),
+         get_string('deletecourses','local_deletecourse'),
          new moodle_url('/local/deletecourse/index.php'),
          'moodle/course:delete'
      ));
